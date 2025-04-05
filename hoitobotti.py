@@ -1,3 +1,4 @@
-print("Hei. Olen hoitobotti. Ja autan sinua hoitoon liittyvissä asioissa. Ketä saan hoitaa tänään?")
-name = input("Anna nimesi: ")
-print(f"Tervetuloa vastaanotolle, {name}!")
+print("Hei. Olen hoitobotti. Ketä saan hoitaa tänään?")
+print("Ja autan sinua hoitoon liittyvissä asioissa.")
+name = input("Annanimesi: ")
+print(f"Tervetuloa vastaanotolle, {name}! Mukavaa päivän jatkoa!")
