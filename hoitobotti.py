@@ -20,6 +20,15 @@ def greet():
     else:
         analyze_symptoms(symptoms)
 
+ef analyze_symptoms(symptoms):
+    time.sleep(1)
+    if "kuume" in symptoms or "ysk" in symptoms:
+        print("Kuulostaa siltä, että sinulla saattaa olla flunssa. Lepoa ja runsaasti nestettä!")
+    elif "päänsärky" in symptoms:
+        print("Päänsärky voi johtua stressistä, koulutehtäviin ärsyyntymisestä tai nestehukasta. Muista juoda vettä!")
+    else:
+        print("Kiinnostavaa! Suosittelen kääntymään lääkärin puoleen lisädiagnoosia varten.")
+
 
 
 
