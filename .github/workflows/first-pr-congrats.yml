@@ -1,0 +1,36 @@
+name: Onnittele ensimmäisestä PR:stä
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  onnittele:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Tarkista onko ensimmäinen PR
+        id: tarkistus
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { data: pullRequests } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'all',
+              per_page: 100
+            });
+
+            const kayttaja = context.payload.pull_request.user.login;
+            const prMaara = pullRequests.filter(pr => pr.user.login === kayttaja).length;
+
+            core.setOutput('eka', prMaara === 1);
+
+      - name: Kommentoi ensimmäisestä PR:stä
+        if: steps.tarkistus.outputs.eka == 'true'
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            🎉 Onnittelut ensimmäisestä pull requestistasi ja kiitos osallistumisesta!
