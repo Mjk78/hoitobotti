@@ -14,7 +14,7 @@ def greet():
     def ask_symptoms():
       
     time.sleep(1)
-    symptoms = input("Mitä oireita sinulla on? (esim. yskä, kuume, päänsärky): ").strip().lower()
+    symptoms = input("Mitä oireita sinulla on? (esim. yskä, kuume, päänsärky, ripuli): ").strip().lower()
     
     if not symptoms:
         print("Et maininnut oireita. Seurantaa suositellaan.")
