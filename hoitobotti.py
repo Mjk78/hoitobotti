@@ -11,7 +11,7 @@ def greet():
     print(f"Tervetuloa vastaanotolle, {name}!")
     return name
     
-    def ask_symptoms():
+def ask_symptoms():
     time.sleep(1)
     symptoms = input("Mitä oireita sinulla on? (esim. yskä, kuume, päänsärky): ").strip().lower()
     
@@ -20,7 +20,7 @@ def greet():
     else:
         analyze_symptoms(symptoms)
 
-ef analyze_symptoms(symptoms):
+def analyze_symptoms(symptoms):
     time.sleep(1)
     if "kuume" in symptoms or "ysk" in symptoms:
         print("Kuulostaa siltä, että sinulla saattaa olla flunssa. Lepoa ja runsaasti nestettä!")
@@ -29,9 +29,14 @@ ef analyze_symptoms(symptoms):
     else:
         print("Kiinnostavaa! Suosittelen kääntymään lääkärin puoleen lisädiagnoosia varten.")
 
-
-
-
+def main():
+    while True:
+        name = greet()
+        ask_symptoms()
+        again = input("Haluatko yrittää uudelleen? (kyllä/ei): ").strip().lower()
+        if again != "kyllä":
+            print("Kiitos käynnistä! Pikaista paranemista!")
+            break
 
 
 
