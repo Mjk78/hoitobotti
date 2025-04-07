@@ -1,0 +1,18 @@
+name: Kommentoi suljettu issue
+
+on:
+  issues:
+    types: [closed]
+
+jobs:
+  kommentoi:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Kommentoi suljettuun issueen
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            ✅ Asia on ratkaistu. Kiitos!

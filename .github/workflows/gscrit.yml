@@ -1,0 +1,34 @@
+name: Lisää label ja kommentoi uusi issue
+
+on:
+  issues:
+    types:
+      - opened
+      - reopened
+
+jobs:
+  kasittele_issue:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Lisää label issueen
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ["bugi", "käsiteltävä"]
+            })
+
+      - name: Kommentoi uutta issuea
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Hei @${{ github.event.issue.user.login }}! 👋
+
+            Kiitos, että avasit uuden issuen. Käymme sen läpi mahdollisimman pian! 🙌
+
